@@ -1,0 +1,9 @@
+{
+	"launchers":{
+		"Jasmine":{
+			"command":"jasmine-node ./specs/reduce/compute_chain_median_spec.js"
+
+		}
+	},
+	"launch_in_dev":["Jasmine"]
+}
