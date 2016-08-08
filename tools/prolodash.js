@@ -1,4 +1,6 @@
-
+/*
+*  初始化参数
+*/
 function _(collection) {
     if(!(this instanceof _)) {
         return new _(collection);
@@ -6,6 +8,9 @@ function _(collection) {
     this.collection = collection;
 }
 
+/*
+*  each方法，返回值和序列
+*/
 function each(collection,fun) {
     for (var i = 0; i < collection.length; i++) {
         fun(collection[i],i);
@@ -17,6 +22,10 @@ _.prototype.each = function(fun) {
 };
 
 _.each = each;
+
+/*
+*  map方法
+*/
 
 function map(array,fun) {
     var result = [];
@@ -37,6 +46,10 @@ _.prototype.map = function(fun) {
 
 _.map = map;
 
+/*
+*  mapValue方法，用来返回遍历对象的value值。
+*/
+
 function mapValue(collection,fun) {
     each(collection,function(value,key) {
         value = fun(value,key);
@@ -50,6 +63,10 @@ _.prototype.mapValue = function(fun) {
 }
 
 _.mapValue = mapValue;
+
+/*
+*  filter方法，用来过滤数组内容
+*/
 
 function filter(collection,fun) {
     var result = [];
@@ -72,6 +89,10 @@ _.prototype.filter = function(fun) {
 
 _.filter = filter;
 
+/*
+*  reduce方法， 用来过滤出数组中的某一个值。
+*/
+
 function reduce(collection,fun) {
     var result = collection[0];
 
@@ -90,6 +111,10 @@ _.prototype.reduce = function(fun) {
 }
 
 _.reduce = reduce;
+
+/*
+*  range方法，用来生成从某个数至某个数之间的数字。
+*/
 
 function range(num_a,num_b) {
     var result = [];
@@ -116,6 +141,10 @@ _.prototype.range = function(number_b) {
 }
 
 _.range = range;
+
+/*
+*  intersection方法，用来查找两个数组中的交集，带去重复。
+*/
 
 function intersection(collection_a, collection_b) {
     var result = [];
@@ -155,6 +184,10 @@ _.prototype.intersection = function(collection) {
 
 _.intersection = intersection;
 
+/*
+*  intersection方法，用来查找两个数组中的不交集，带去重。
+*/
+
 function no_intersection(collection_a, collection_b) {
     var result = [];
     var judge = {};
@@ -177,9 +210,17 @@ _.prototype.no_intersection = function(collection) {
 
 _.no_intersection = no_intersection;
 
+/*
+*  value方法，用来返回this中的collection的值。
+*/
+
 _.prototype.value = function() {
     return this.collection;
 };
+
+/*
+*  num_change_letter方法，用来将数字转化为对应的字母。
+*/
 
 function num_change_letter(num) {
     var f = ['','a','b','c','d','e','f','g','h','i','j','k','l',
@@ -196,6 +237,10 @@ _.prototype.num_change_letter = function(num) {
 }
 
 _.num_change_letter = num_change_letter;
+
+/*
+*  concat方法用于将两个数组进行连接。
+*/
 
 function concat(collection_a,collection_b) {
     var array = [];
@@ -214,6 +259,8 @@ _.prototype.concat = function(collection_b) {
 }
 
 _.concat = concat;
+
+
 
 function repeat(collection,fun) {
     var array = {};
@@ -292,5 +339,36 @@ _.prototype.median = function() {
 }
 
 _median = median;
+
+/*
+*  flatten方法，用来移除嵌套数组，使之成为一维数组。
+*/
+
+function flatten(collection) {
+    var result = [];
+
+    var foo = function(array) {
+        _.each(array, item => {
+            //_.isArray(item) ? foo(item) : result.push(item);
+            Array.isArray(item) ? foo(item) : result.push(item);
+        });
+    };
+
+    foo(collection);
+    return result;
+}
+
+_.prototype.flatten = function() {
+    result = flatten(this.collection);
+
+    this.collection = result;
+    return this;
+}
+
+_.flatten = flatten;
+
+_.isArray = function(obj) {
+    return Object.prototype.toString.call(obj) === '[object Array]';
+}
 
 module.exports = _;
