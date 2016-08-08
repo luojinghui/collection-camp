@@ -260,26 +260,31 @@ _.prototype.concat = function(collection_b) {
 
 _.concat = concat;
 
-
+/*
+*  repeat方法用于数组去重。
+*/
 
 function repeat(collection,fun) {
     var array = {};
     var result = [];
 
-    _.each(collection,function(n) {
-        array[n + ' '] = array[n + ' '] || 0;
-    });
-    for (var key in array) {
-        result.push(parseInt(key));
-    }
+    _.each(collection, item => {
+        if(!array[item]) {
+            result.push(item);
+            array[item] = item;
+        }
+    })
+
     return result;
 }
 
-_.prototype.no_repeat = function() {
-    return repeat(this.collection);
+_.prototype.repeat = function() {
+    this.collection = repeat(this.collection);
+
+    return this;
 }
 
-_.no_repeat = repeat;
+_.repeat = repeat;
 
 _.prototype.is_exist = function(element) {
     var index = false;
