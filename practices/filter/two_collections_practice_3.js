@@ -8,7 +8,7 @@ function choose_divisible_integer(collection_a, collection_b) {
       _.foreach(collection_b,function(m) {
            if(n % m === 0) {
               result.push(n);
-          }
+          } 
       });
   });
   return result;

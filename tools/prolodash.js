@@ -117,21 +117,28 @@ _.prototype.range = function(number_b) {
 
 _.range = range;
 
-function intersection(collection) {
+function intersection(collection_a, collection_b) {
     var result = [];
+    var judge = {};
 
-    _.each(this.collection,function(n) {
-        _.each(collection,function(m) {
-            if(n === m) {
-                result.push(n);
-            }
-        });
-    });
+    // _.each(this.collection,function(n) {
+    //     _.each(collection,function(m) {
+    //         if(n === m) {
+    //             result.push(n);
+    //         }
+    //     });
+    // });
+    _.each(collection_a, function(item) {
+        if(collection_b.indexOf(item) >= 0 && !judge[item]) {
+            result.push(item);
+            judge[item] = item;
+        }
+    })
     return result;
 }
 
 _.prototype.intersection = function(collection) {
-    return intersection(this.collection,collection);
+    result = intersection(this.collection,collection);
     // var result = [];
     //
     // this.each(function(n) {
@@ -141,11 +148,34 @@ _.prototype.intersection = function(collection) {
     //         }
     //     });
     // });
-    // this.collection = result;
-    // return this;
+    this.collection = result;
+    console.log(this.collection);
+    return this;
 }
 
 _.intersection = intersection;
+
+function no_intersection(collection_a, collection_b) {
+    var result = [];
+    var judge = {};
+
+    _.each(collection_a, function(item) {
+        if(collection_b.indexOf(item) === -1 && !judge[item]) {
+            result.push(item);
+            judge[item] = item;
+        }
+    })
+    return result;
+}
+
+_.prototype.no_intersection = function(collection) {
+    result = no_intersection(this.collection,collection);
+
+    this.collection = result;
+    return this;
+}
+
+_.no_intersection = no_intersection;
 
 _.prototype.value = function() {
     return this.collection;
