@@ -1,3 +1,5 @@
 .idea
 node_modules
 *.iml
+bower_components
+.DS_Store

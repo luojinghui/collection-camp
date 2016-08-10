@@ -11,6 +11,28 @@ var rank_asc = function(collection){
     sort(collection);
 };
 
+function sort(array) {
+    var i = 1;
+    var index;
+    var value;
+
+    for(i = 1; i < array.length; i ++) {
+        index = i;
+        value = array[i];
+
+        while(--index > -1) {
+            if(array[index] = value) {
+                array[index + 1] = array[index];
+            } else {
+                break;
+            }
+        }
+        array[index + 1] = value;
+    }
+    console.log(array);
+}
+
+
 /*
  return collection.sort(sortNumber);
  var array_sort = [];
@@ -44,32 +66,32 @@ var rank_asc = function(collection){
     //     })
     // }
 
-    function sort(array) {
-        var i = 1;
-        var in_index;
-        var step;
-        var value;
-
-        for (i = 1; i < array.length; i++) {
-
-            in_index = i;
-            step = in_index;
-            value = array[in_index];
-
-            while (--in_index > -1) {
-                if (array[in_index] > value) {
-                    array[in_index + 1] = array[in_index];
-                } else {
-                    break;
-                }
-            }
-
-            array[in_index + 1] = value;
-        }
-
-        console.log(array);
-        return array;
-    }
+    // function sort(array) {
+    //     var i = 1;
+    //     var in_index;
+    //     var step;
+    //     var value;
+    //
+    //     for (i = 1; i < array.length; i++) {
+    //
+    //         in_index = i;
+    //         step = in_index;
+    //         value = array[in_index];
+    //
+    //         while (--in_index > -1) {
+    //             if (array[in_index] > value) {
+    //                 array[in_index + 1] = array[in_index];
+    //             } else {
+    //                 break;
+    //             }
+    //         }
+    //
+    //         array[in_index + 1] = value;
+    //     }
+    //
+    //     console.log(array);
+    //     return array;
+    // }
 
 
 module.exports = rank_asc;
