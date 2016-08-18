@@ -8,28 +8,29 @@ var rank_asc = function(collection){
     // });
 
     // return _(collection).sort((m, n) => m < n);
-    sort(collection);
+    return sort(collection);
 };
 
 function sort(array) {
-    // var i = 1;
-    // var index;
-    // var value;
-    //
-    // for(i = 1; i < array.length; i ++) {
-    //     index = i;
-    //     value = array[i];
-    //
-    //     while(--index > -1) {
-    //         if(array[index] = value) {
-    //             array[index + 1] = array[index];
-    //         } else {
-    //             break;
-    //         }
-    //     }
-    //     array[index + 1] = value;
-    // }
-    // console.log(array);
+    var i = 1;
+    var index;
+    var value;
+
+    for(i = 1; i < array.length; i ++) {
+        index = i;
+        value = array[i];
+
+        while(--index > -1) {
+            if(array[index] < value) {
+                array[index + 1] = array[index];
+            } else {
+                break;
+            }
+        }
+        array[index + 1] = value;
+    }
+    console.log(array);
+    return array;
 }
 
 
